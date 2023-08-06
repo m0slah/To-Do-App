@@ -24,8 +24,9 @@
           <input
             type="checkbox"
             v-model="task.completed"
-            class="mr-2 w-4 h-4 border-gray-300 rounded-sm mr-2"
+            class="mr-2 h-4 w-4 border-gray-300 rounded-lg text-red-500 focus:ring-0 focus:outline-none focus:border-red-500"
           />
+
           <span
             class="text-white"
             :style="{
@@ -34,7 +35,9 @@
             >{{ task.text }}</span
           >
         </label>
-        <button @click="removeTask(key)" class="text-red-500">Remove</button>
+        <button @click="removeTask(key)" class="text-red-500 hover:opacity-90">
+          Remove
+        </button>
       </li>
     </ul>
   </div>
@@ -51,7 +54,7 @@ export default {
   methods: {
     addTask() {
       if (this.newTask.trim === "") return;
-      this.tasks.push({ text: this.newTask });
+      this.tasks.push({ text: this.newTask, completed: false });
       this.newTask = "";
     },
     removeTask(index) {

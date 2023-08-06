@@ -7,7 +7,10 @@
       @keyup.enter="addTask"
       placeholder="Add a new task"
     />
-    <button class="text-black bg-white p-2 mx-2" @click="addTask">
+    <button
+      class="text-white bg-green-300 p-2 mx-2 hover:opacity-90"
+      @click="addTask"
+    >
       Add Task
     </button>
 
@@ -15,10 +18,23 @@
       <li
         v-for="(task, key) in tasks"
         :key="key"
-        class="p-4 flex justify-between text-white text-lg capitalize"
+        class="p-4 flex justify-between text-lg capitalize"
       >
-        {{ task.text }}
-        <button @click="removeTask(key)" class="justify-end text-red-500">Remove</button>
+        <label class="flex items-center">
+          <input
+            type="checkbox"
+            v-model="task.completed"
+            class="mr-2 w-4 h-4 border-gray-300 rounded-sm mr-2"
+          />
+          <span
+            class="text-white"
+            :style="{
+              textDecoration: task.completed ? 'line-through' : 'none',
+            }"
+            >{{ task.text }}</span
+          >
+        </label>
+        <button @click="removeTask(key)" class="text-red-500">Remove</button>
       </li>
     </ul>
   </div>

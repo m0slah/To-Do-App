@@ -18,7 +18,7 @@
         class="p-4 flex justify-between text-white text-lg capitalize"
       >
         {{ task.text }}
-        <button onclick="#" class="justify-end text-red-500">Remove</button>
+        <button @click="removeTask(key)" class="justify-end text-red-500">Remove</button>
       </li>
     </ul>
   </div>
@@ -37,6 +37,9 @@ export default {
       if (this.newTask.trim === "") return;
       this.tasks.push({ text: this.newTask });
       this.newTask = "";
+    },
+    removeTask(index) {
+      this.tasks.splice(index, 1);
     },
   },
 };
